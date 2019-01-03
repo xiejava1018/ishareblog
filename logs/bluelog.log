@@ -1,0 +1,121 @@
+2019-01-03 16:27:40,052 - flask.app - ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\engine\base.py", line 1193, in _execute_context
+    context)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\engine\default.py", line 509, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: post
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\flask\_compat.py", line 35, in reraise
+    raise value
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "E:\pythonproject\ishareblog\ishareblog\blueprints\blog.py", line 24, in index
+    pagination = Post.query.order_by(Post.timestamp.desc()).paginate(page, per_page=per_page)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\flask_sqlalchemy\__init__.py", line 491, in paginate
+    items = self.limit(per_page).offset((page - 1) * per_page).all()
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\orm\query.py", line 2843, in all
+    return list(self)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\orm\query.py", line 2995, in __iter__
+    return self._execute_and_instances(context)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\orm\query.py", line 3018, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\engine\base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\sql\elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\engine\base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\engine\base.py", line 1200, in _execute_context
+    context)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\engine\base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\util\compat.py", line 265, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\util\compat.py", line 248, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\engine\base.py", line 1193, in _execute_context
+    context)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\engine\default.py", line 509, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: post [SQL: 'SELECT post.id AS post_id, post.title AS post_title, post.body AS post_body, post.timestamp AS post_timestamp, post.can_comment AS post_can_comment, post.category_id AS post_category_id \nFROM post ORDER BY post.timestamp DESC\n LIMIT ? OFFSET ?'] [parameters: (10, 0)] (Background on this error at: http://sqlalche.me/e/e3q8)
+2019-01-03 16:27:40,949 - flask.app - ERROR - Exception on /favicon.ico [GET]
+Traceback (most recent call last):
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\flask\app.py", line 1791, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\flask\app.py", line 1774, in raise_routing_exception
+    raise request.routing_exception
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\flask\ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\werkzeug\routing.py", line 1581, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\engine\base.py", line 1193, in _execute_context
+    context)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\engine\default.py", line 509, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: admin
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\flask\app.py", line 1713, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\flask\app.py", line 1644, in handle_http_exception
+    return handler(e)
+  File "E:\pythonproject\ishareblog\ishareblog\__init__.py", line 126, in page_not_found
+    return render_template('errors/404.html'), 404
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\flask\templating.py", line 133, in render_template
+    ctx.app.update_template_context(context)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\flask\app.py", line 792, in update_template_context
+    context.update(func())
+  File "E:\pythonproject\ishareblog\ishareblog\__init__.py", line 107, in make_template_context
+    admin = Admin.query.first()
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\orm\query.py", line 2895, in first
+    ret = list(self[0:1])
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\orm\query.py", line 2687, in __getitem__
+    return list(res)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\orm\query.py", line 2995, in __iter__
+    return self._execute_and_instances(context)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\orm\query.py", line 3018, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\engine\base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\sql\elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\engine\base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\engine\base.py", line 1200, in _execute_context
+    context)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\engine\base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\util\compat.py", line 265, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\util\compat.py", line 248, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\engine\base.py", line 1193, in _execute_context
+    context)
+  File "C:\Users\Administrator\.virtualenvs\ishareblog-SvlvYflD\lib\site-packages\sqlalchemy\engine\default.py", line 509, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: admin [SQL: 'SELECT admin.id AS admin_id, admin.username AS admin_username, admin.password_hash AS admin_password_hash, admin.blog_title AS admin_blog_title, admin.blog_sub_title AS admin_blog_sub_title, admin.name AS admin_name, admin.about AS admin_about \nFROM admin\n LIMIT ? OFFSET ?'] [parameters: (1, 0)] (Background on this error at: http://sqlalche.me/e/e3q8)
