@@ -1,2 +1,2 @@
 FLASK_APP=ishareblog
-FLASK_ENV=development
+FLASK_ENV=production

@@ -7,4 +7,4 @@ if os.path.exists(dotenv_path):
 
 from ishareblog import create_app  # noqa
 
-app = create_app('development')
+app = create_app('production')
