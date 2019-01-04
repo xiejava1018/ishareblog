@@ -82,17 +82,17 @@
     {% block footer %}
         <footer>
             <p class="float-left">
-                <small> &copy; 2018 <a href="http://greyli.com" title="Written by Grey Li">Grey Li</a> -
-                    <a href="https://github.com/greyli/bluelog" title="Fork me on GitHub">GitHub</a> -
-                    <a href="http://helloflask.com" title="A HelloFlask project">HelloFlask</a>
+                <small> &copy; 2019 <a href="http://blog.ishareread.com" title="Written by Xie Java">Xie Java</a> -
+                    <a href="https://github.com/xiejava1018/ishareblog.git" title="Fork me on GitHub">GitHub</a> -
+                    <a href="http://blog.ishareread.com" title="A ishareblog project">爱分享博客</a>
                 </small>
             </p>
             <p class="float-right">
                 <small>
                     {% if current_user.is_authenticated %}
-                        <a href="{{ url_for('auth.logout', next=request.full_path) }}">Logout</a>
+                        <a href="{{ url_for('auth.logout', next=request.full_path) }}">登出</a>
                     {% else %}
-                        <a href="{{ url_for('auth.login', next=request.full_path) }}">Login</a>
+                        <a href="{{ url_for('auth.login', next=request.full_path) }}">登录</a>
                     {% endif %}
                 </small>
             </p>
