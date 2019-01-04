@@ -10,6 +10,9 @@
         </div>
         <div class="row h-100 justify-content-center align-items-center">
             {{ render_form(form, extra_classes='col-6') }}
+             <hr>
+            <p class="small"><a href="{{ url_for('.register') }}">Register new account</a></p>
+            <p class="small"><a href="{{ url_for('.forget_password') }}">Forget password</a></p>
         </div>
     </div>
 {% endblock %}

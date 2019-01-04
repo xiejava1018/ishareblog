@@ -168,7 +168,8 @@ def register_commands(app):
                 blog_title='Bluelog',
                 blog_sub_title="No, I'm the real thing.",
                 name='Admin',
-                about='Anything about you.'
+                about='Anything about you.',
+                email=app.config['BLUELOG_EMAIL']
             )
             admin.set_password(password)
             db.session.add(admin)

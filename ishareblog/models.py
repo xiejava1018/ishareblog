@@ -21,6 +21,7 @@ class Admin(db.Model, UserMixin):
     blog_sub_title = db.Column(db.String(100))
     name = db.Column(db.String(30))
     about = db.Column(db.Text)
+    email = db.Column(db.String(254), unique=True, index=True)
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
