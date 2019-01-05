@@ -58,7 +58,7 @@ def register_logging(app):
 
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-    file_handler = RotatingFileHandler(os.path.join(basedir, 'logs/bluelog.log'),
+    file_handler = RotatingFileHandler(os.path.join(basedir, 'logs/ishareblog.log'),
                                        maxBytes=10 * 1024 * 1024, backupCount=10)
     file_handler.setFormatter(formatter)
     file_handler.setLevel(logging.INFO)
@@ -67,7 +67,7 @@ def register_logging(app):
         mailhost=app.config['MAIL_SERVER'],
         fromaddr=app.config['MAIL_USERNAME'],
         toaddrs=['ADMIN_EMAIL'],
-        subject='Bluelog Application Error',
+        subject='IshareBlog Application Error',
         credentials=(app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD']))
     mail_handler.setLevel(logging.ERROR)
     mail_handler.setFormatter(request_formatter)
@@ -151,7 +151,7 @@ def register_commands(app):
     @click.option('--password', prompt=True, hide_input=True,
                   confirmation_prompt=True, help='The password used to login.')
     def init(username, password):
-        """Building Bluelog, just for you."""
+        """Building ISHAREBLOG, just for you."""
 
         click.echo('Initializing the database...')
         db.create_all()
@@ -165,11 +165,11 @@ def register_commands(app):
             click.echo('Creating the temporary administrator account...')
             admin = Admin(
                 username=username,
-                blog_title='Bluelog',
+                blog_title='IshareBlog',
                 blog_sub_title="No, I'm the real thing.",
                 name='Admin',
                 about='Anything about you.',
-                email=app.config['BLUELOG_EMAIL']
+                email=app.config['ISHAREBLOG_EMAIL']
             )
             admin.set_password(password)
             db.session.add(admin)
@@ -216,7 +216,7 @@ def register_request_handlers(app):
     @app.after_request
     def query_profiler(response):
         for q in get_debug_queries():
-            if q.duration >= app.config['BLUELOG_SLOW_QUERY_THRESHOLD']:
+            if q.duration >= app.config['ISHAREBLOG_SLOW_QUERY_THRESHOLD']:
                 app.logger.warning(
                     'Slow query: Duration: %fs\n Context: %s\nQuery: %s\n '
                     % (q.duration, q.context, q.statement)

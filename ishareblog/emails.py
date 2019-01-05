@@ -38,7 +38,7 @@ def send_mail_bytemplate(to, subject, template, **kwargs):
 
 def send_new_comment_email(post):
     post_url = url_for('blog.show_post', post_id=post.id, _external=True) + '#comments'
-    send_mail(subject='新评论', to=current_app.config['BLUELOG_EMAIL'],
+    send_mail(subject='新评论', to=current_app.config['ISHAREBLOG_EMAIL'],
               html='<p><i>%s</i> 的新评论, 点击查看:</p>'
                    '<p><a href="%s">%s</a></P>'
                    '<p><small style="color: #868e96">请不要回复该邮件.</small></p>'

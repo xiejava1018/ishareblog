@@ -36,7 +36,7 @@ def redirect_back(default='blog.index', **kwargs):
 
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in current_app.config['BLUELOG_ALLOWED_IMAGE_EXTENSIONS']
+           filename.rsplit('.', 1)[1].lower() in current_app.config['ISHAREBLOG_ALLOWED_IMAGE_EXTENSIONS']
 
 
 def generate_token(user, operation, expire_in=None, **kwargs):
