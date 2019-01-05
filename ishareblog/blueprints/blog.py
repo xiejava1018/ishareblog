@@ -79,9 +79,9 @@ def show_post(post_id):
         db.session.add(comment)
         db.session.commit()
         if current_user.is_authenticated:  # send message based on authentication status
-            flash('Comment published.', 'success')
+            flash('评论成功！.', 'success')
         else:
-            flash('Thanks, your comment will be published after reviewed.', 'info')
+            flash('谢谢，您的评论正在审核中......', 'info')
             send_new_comment_email(post)  # send notification email to admin
         return redirect(url_for('.show_post', post_id=post_id))
     return render_template('blog/post.html', post=post, pagination=pagination, form=form, comments=comments)
@@ -91,7 +91,7 @@ def show_post(post_id):
 def reply_comment(comment_id):
     comment = Comment.query.get_or_404(comment_id)
     if not comment.post.can_comment:
-        flash('Comment is disabled.', 'warning')
+        flash('该文章评论未开放。', 'warning')
         return redirect(url_for('.show_post', post_id=comment.post.id))
     return redirect(
         url_for('.show_post', post_id=comment.post_id, reply=comment_id, author=comment.author) + '#comment-form')

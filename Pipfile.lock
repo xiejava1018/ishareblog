@@ -1,16 +1,14 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "2e8dc800264e3e16c63e512662c56a514dac97c2a7babc14bc95b05ee0af5f4f"
+            "sha256": "730cc695c20baaa798047feeaecad5c3e7a5c84b256932aa0f33541bd4af3501"
         },
         "pipfile-spec": 6,
-        "requires": {
-            "python_version": "3.7"
-        },
+        "requires": {},
         "sources": [
             {
                 "name": "pypi",
-                "url": "https://pypi.org/simple",
+                "url": "https://pypi.tuna.tsinghua.edu.cn/simple",
                 "verify_ssl": true
             }
         ]

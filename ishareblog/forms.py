@@ -9,7 +9,7 @@ from flask_ckeditor import CKEditorField
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField, TextAreaField, ValidationError, HiddenField, \
     BooleanField, PasswordField
-from wtforms.validators import DataRequired, Email, Length, Optional, URL
+from wtforms.validators import DataRequired, Email, Length, Optional, URL,EqualTo
 
 from ishareblog.models import Category
 
@@ -67,4 +67,17 @@ class AdminCommentForm(CommentForm):
 class LinkForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired(), Length(1, 30)])
     url = StringField('URL', validators=[DataRequired(), URL(), Length(1, 255)])
+    submit = SubmitField()
+
+
+class ForgetPasswordForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Length(1, 254), Email()])
+    submit = SubmitField()
+
+
+class ResetPasswordForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Length(1, 254), Email()])
+    password = PasswordField('Password', validators=[
+        DataRequired(), Length(8, 128), EqualTo('password2')])
+    password2 = PasswordField('Confirm password', validators=[DataRequired()])
     submit = SubmitField()
