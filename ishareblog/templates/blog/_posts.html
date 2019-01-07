@@ -6,6 +6,7 @@
             <small><a href="{{ url_for('.show_post', post_id=post.id) }}">Read More</a></small>
         </p>
         <small>
+            阅读数：{{ post.read_count }}
             评论: <a href="{{ url_for('.show_post', post_id=post.id) }}#comments">{{ post.comments|length }}</a>&nbsp;&nbsp;
             分类: <a
                 href="{{ url_for('.show_category', category_id=post.category.id) }}">{{ post.category.name }}</a>

@@ -58,6 +58,7 @@ class Post(db.Model):
     timestamp = db.Column(db.DateTime, default=datetime.utcnow, index=True)
     can_comment = db.Column(db.Boolean, default=True)
     read_count=db.Column(db.Integer,default=0)  #阅读数
+    comment_count=db.Column(db.Integer,default=0) #评论数
 
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
 
@@ -65,35 +66,20 @@ class Post(db.Model):
     comments = db.relationship('Comment', back_populates='post', cascade='all, delete-orphan')
 
     def chang_read_count(self):
-        db.session.execute(text('update post set read_count=read_count+1 where id=:category_id'), {'category_id': self.category_id})
+        db.session.execute(text('update post set read_count=read_count+1 where id=:id'), {'id': self.id})
+        db.session.commit()
 
     @staticmethod
     def chang_post_count(category_id):
         db.session.execute(text('update category set post_count=(select count(1) from post where category_id=:category_id) where id=:category_id'), {'category_id': category_id})
 
     @staticmethod
-    def on_changed_post_count(target,value,oldvalue,initiator):
-        print('target= %s' %target)
-        print('value=' + str(value))
-        print('value=' + str(oldvalue))
-        print('initiator' + str(initiator))
-        pass
-
-    @staticmethod
     def on_insert(mapper, connection, target):
         Post.chang_post_count(target.category_id)
-        print('target= %s' % target)
-        print('value=' + str(connection))
-        print('initiator' + str(mapper))
-        pass
 
     @staticmethod
     def on_delete(mapper, connection, target):
         Post.chang_post_count(target.category_id)
-        print('delete target= %s' % target)
-        print('value=' + str(connection))
-        print('initiator' + str(mapper))
-        pass
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -114,6 +100,20 @@ class Comment(db.Model):
     # Same with:
     # replies = db.relationship('Comment', backref=db.backref('replied', remote_side=[id]),
     # cascade='all,delete-orphan')
+    @staticmethod
+    def chang_comment_count(post_id):
+        db.session.execute(text(
+            'update post set comment_count=(select count(1) from comment where post_id=:post_id and replied_id is null) where id=:post_id'),
+                           {'post_id': post_id})
+
+    @staticmethod
+    def on_insert(mapper, connection, target):
+        Comment.chang_comment_count(target.post_id)
+
+    @staticmethod
+    def on_delete(mapper, connection, target):
+        Comment.chang_comment_count(target.post_id)
+
 
 
 class Link(db.Model):
@@ -125,3 +125,6 @@ class Link(db.Model):
 #db.event.listen(Post.body,'set',Post.on_changed_post_count)
 db.event.listen(Post,'after_insert',Post.on_insert)
 db.event.listen(Post,'after_delete',Post.on_delete)
+
+db.event.listen(Comment,'after_insert',Comment.on_delete)
+db.event.listen(Comment,'after_delete',Comment.on_delete)
